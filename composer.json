@@ -1,0 +1,16 @@
+{
+    "name": "lightster/upcrypto",
+    "description": "Streamline runtime upgrade of cryptography",
+    "autoload": {
+        "psr-4": {
+            "Lstr\\Upcrypto\\": "src/Lstr/Upcrypto/"
+        }
+    },
+    "require": {
+        "php": "~5.4",
+        "defuse/php-encryption": "~1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    }
+}
