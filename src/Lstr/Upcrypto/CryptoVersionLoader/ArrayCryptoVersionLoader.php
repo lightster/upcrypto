@@ -8,12 +8,12 @@ use Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface;
 class ArrayCryptoVersionLoader extends AbstractCryptoVersionLoader
 {
     /**
-     * @var $versions
+     * @var array
      */
     private $versions;
 
     /**
-     * @var $versions
+     * @var array
      */
     private $cryptos;
 
