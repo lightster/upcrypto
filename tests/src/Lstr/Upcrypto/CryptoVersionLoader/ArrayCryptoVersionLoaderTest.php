@@ -131,4 +131,54 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             get_class($version_loader->getCryptoForVersion(2))
         );
     }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testCryptoForUnknownVersionThrowsAnException()
+    {
+        $mock_builder = $this->getMockBuilder(
+            '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
+        );
+        $adapters = [
+            $mock_builder->getMock(),
+        ];
+
+        $versions = [
+            [
+                'crypto_adapter' => get_class($adapters[0]),
+                'crypto_key'     => '\x1...',
+            ],
+        ];
+
+        $version_loader = new ArrayCryptoVersionLoader([
+            $versions[0],
+        ]);
+        $version_loader->getCryptoForVersion(2);
+    }
+
+    public function testCryptoForVersionIsReused()
+    {
+        $mock_builder = $this->getMockBuilder(
+            '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
+        );
+        $adapters = [
+            $mock_builder->getMock(),
+        ];
+
+        $versions = [
+            [
+                'crypto_adapter' => get_class($adapters[0]),
+                'crypto_key'     => '\x1...',
+            ],
+        ];
+
+        $version_loader = new ArrayCryptoVersionLoader([
+            $versions[0],
+        ]);
+        $this->assertSame(
+            $version_loader->getCryptoForVersion(1),
+            $version_loader->getCryptoForVersion(1)
+        );
+    }
 }
