@@ -5,7 +5,7 @@ namespace Lstr\Upcrypto\CryptoVersionLoader;
 use Lstr\Upcrypto\CryptoVersionLoader\ArrayCryptoVersionLoader;
 use PHPUnit_Framework_TestCase;
 
-class UpcryptoTest extends PHPUnit_Framework_TestCase
+class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
 {
     public function testLatestCryptoVersionNumberIsCorrect()
     {
