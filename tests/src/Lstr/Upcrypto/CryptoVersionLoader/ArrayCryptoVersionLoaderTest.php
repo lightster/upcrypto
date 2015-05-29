@@ -10,8 +10,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
     public function testLatestCryptoVersionNumberIsCorrect()
     {
         $version = [
-            'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\DefusePhpEncryption',
-            'crypto_key'     => '\x1...',
+            'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface',
         ];
 
         $version_loader = new ArrayCryptoVersionLoader([
@@ -44,20 +43,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $mock_builder->getMock(),
         ];
 
-        $versions = [
-            [
-                'crypto_adapter' => get_class($adapters[0]),
-                'crypto_key'     => '\x1...',
-            ],
-            [
-                'crypto_adapter' => get_class($adapters[1]),
-                'crypto_key'     => '\x2...',
-            ],
-            [
-                'crypto_adapter' => get_class($adapters[2]),
-                'crypto_key'     => '\x3...',
-            ],
-        ];
+        $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
             $versions[0],
@@ -98,20 +84,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $mock_builder->getMock(),
         ];
 
-        $versions = [
-            [
-                'crypto_adapter' => get_class($adapters[0]),
-                'crypto_key'     => '\x1...',
-            ],
-            [
-                'crypto_adapter' => get_class($adapters[1]),
-                'crypto_key'     => '\x2...',
-            ],
-            [
-                'crypto_adapter' => get_class($adapters[2]),
-                'crypto_key'     => '\x3...',
-            ],
-        ];
+        $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
             $versions[0],
@@ -144,12 +117,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $mock_builder->getMock(),
         ];
 
-        $versions = [
-            [
-                'crypto_adapter' => get_class($adapters[0]),
-                'crypto_key'     => '\x1...',
-            ],
-        ];
+        $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
             $versions[0],
@@ -166,12 +134,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $mock_builder->getMock(),
         ];
 
-        $versions = [
-            [
-                'crypto_adapter' => get_class($adapters[0]),
-                'crypto_key'     => '\x1...',
-            ],
-        ];
+        $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
             $versions[0],
@@ -180,5 +143,18 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $version_loader->getCryptoForVersion(1),
             $version_loader->getCryptoForVersion(1)
         );
+    }
+
+    private function getVersionsFromAdapters(array $adapters)
+    {
+        $versions = [];
+
+        foreach ($adapters as $adapter) {
+            $versions[] = [
+                'crypto_adapter' => $adapter,
+            ];
+        }
+
+        return $versions;
     }
 }
