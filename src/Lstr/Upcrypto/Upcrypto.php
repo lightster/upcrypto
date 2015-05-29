@@ -72,7 +72,7 @@ class Upcrypto
             return $encryption_object;
         }
 
-        return $this->encrypt($this->encrypt($encryption_object));
+        return $this->encrypt($this->decrypt($encryption_object));
     }
 
     /**

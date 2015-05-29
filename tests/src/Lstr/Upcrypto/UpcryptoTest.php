@@ -231,6 +231,14 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
                 '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
             )
             ->getMock();
+        $crypto_adapter
+            ->expects($this->once())
+            ->method('decrypt');
+        // encrypt is called once to encrypt the value and
+        // then again to encrypt the value again
+        $crypto_adapter
+            ->expects($this->exactly(2))
+            ->method('encrypt');
 
         $historical_version_loader = $this
             ->getMockBuilder(
