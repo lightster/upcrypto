@@ -1,0 +1,65 @@
+<?php
+
+namespace Lstr\Upcrypto;
+
+use Lstr\Upcrypto\CryptoVersionLoader\ArrayCryptoVersionLoader;
+use PHPUnit_Framework_TestCase;
+
+class ExampleTest extends PHPUnit_Framework_TestCase
+{
+    public function testZendCryptHasAnExample()
+    {
+        $versions = [
+            [
+                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
+                'crypto_key' => 'the original key',
+            ],
+            [
+                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
+                'crypto_key' => 'the new and improved key',
+            ]
+        ];
+
+        $original_version_loader = new ArrayCryptoVersionLoader([
+            $versions[0]
+        ]);
+        $original_upcrypto = new Upcrypto($original_version_loader);
+        $loaded_value = $original_upcrypto->encrypt('tada');
+        // pretend the encrypted $loaded_value is actually stored in a database
+        // and we just read the encrypted value from the database into $loaded_value
+
+        $version_loader = new ArrayCryptoVersionLoader([
+            $versions[0],
+            $versions[1],
+        ]);
+        $upcrypto = new Upcrypto($version_loader);
+
+        // if you just want to decrypt the value
+        $this->assertEquals(
+            'tada',
+            $upcrypto->decrypt($loaded_value)
+        );
+
+        // if we want to check if the encryption is our most current
+        // method of encryption
+        if (!$upcrypto->isUpToDate($loaded_value)) {
+            // if it is not, we can upgrade it to the latest methodology
+            $upgraded_encrypted_value = $upcrypto->upgradeEncryption($loaded_value);
+            // now you can save the data back to the database
+
+            // the upgraded version still decrypts to the propery value
+            $this->assertEquals(
+                'tada',
+                $upcrypto->decrypt($upgraded_encrypted_value)
+            );
+            // and the original encryption cipher is not the same as the
+            // new encrpytion cipher
+            $this->assertNotEquals(
+                $loaded_value,
+                $upgraded_encrypted_value
+            );
+        } else {
+            $this->assertFalse(true);
+        }
+    }
+}
