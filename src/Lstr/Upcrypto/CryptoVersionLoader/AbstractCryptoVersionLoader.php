@@ -14,6 +14,6 @@ abstract class AbstractCryptoVersionLoader implements CryptoVersionLoaderInterfa
      */
     public function getLatestCrypto()
     {
-        return $this->getCryptoForVersion($this->getLatestCryptoVersionNumber());
+        return $this->getCryptoForVersion($this->getLatestCryptoVersionId());
     }
 }

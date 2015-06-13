@@ -31,7 +31,7 @@ class ArrayCryptoVersionLoader extends AbstractCryptoVersionLoader
      *
      * @return int
      */
-    public function getLatestCryptoVersionNumber()
+    public function getLatestCryptoVersionId()
     {
         return count($this->versions);
     }

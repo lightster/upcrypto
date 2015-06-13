@@ -16,20 +16,20 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
         $version_loader = new ArrayCryptoVersionLoader([
             $version,
         ]);
-        $this->assertEquals(1, $version_loader->getLatestCryptoVersionNumber());
+        $this->assertEquals(1, $version_loader->getLatestCryptoVersionId());
 
         $version_loader = new ArrayCryptoVersionLoader([
             $version,
             $version,
         ]);
-        $this->assertEquals(2, $version_loader->getLatestCryptoVersionNumber());
+        $this->assertEquals(2, $version_loader->getLatestCryptoVersionId());
 
         $version_loader = new ArrayCryptoVersionLoader([
             $version,
             $version,
             $version,
         ]);
-        $this->assertEquals(3, $version_loader->getLatestCryptoVersionNumber());
+        $this->assertEquals(3, $version_loader->getLatestCryptoVersionId());
     }
 
     public function testLatestCryptoIsCorrectlyReturned()

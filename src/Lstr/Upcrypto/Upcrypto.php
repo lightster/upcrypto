@@ -29,7 +29,7 @@ class Upcrypto
         $crypto = $this->version_loader->getLatestCrypto();
 
         $object_info = [
-            'crypto_version' => $this->version_loader->getLatestCryptoVersionNumber(),
+            'crypto_version' => $this->version_loader->getLatestCryptoVersionId(),
             'cipher'         => $crypto->encrypt($plain_text),
         ];
 
@@ -59,7 +59,7 @@ class Upcrypto
     {
         $object_info = $this->processEncryptedObject($encryption_object);
 
-        return $this->version_loader->getLatestCryptoVersionNumber() == $object_info['crypto_version'];
+        return $this->version_loader->getLatestCryptoVersionId() == $object_info['crypto_version'];
     }
 
     /**

@@ -22,7 +22,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $version_loader
             ->expects($this->any())
@@ -50,7 +50,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $version_loader
             ->expects($this->any())
@@ -135,7 +135,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $version_loader
             ->expects($this->any())
@@ -162,11 +162,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(2));
         $version_loader
             ->expects($this->once())
@@ -192,11 +192,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $historical_version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(1));
         $historical_version_loader
             ->expects($this->once())
@@ -207,11 +207,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $new_version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(2));
 
         $historical_upcrypto = new Upcrypto($historical_version_loader);
@@ -244,11 +244,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $historical_version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(1));
         $historical_version_loader
             ->expects($this->any())
@@ -259,11 +259,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $new_version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(2));
         $new_version_loader
             ->expects($this->any())
@@ -298,11 +298,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
-            ->setMethods(['getLatestCryptoVersionNumber', 'getCryptoForVersion'])
+            ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
         $version_loader
             ->expects($this->any())
-            ->method('getLatestCryptoVersionNumber')
+            ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(2));
         $version_loader
             ->expects($this->any())

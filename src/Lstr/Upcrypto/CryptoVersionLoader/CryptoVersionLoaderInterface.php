@@ -13,7 +13,7 @@ interface CryptoVersionLoaderInterface
      *
      * @return int
      */
-    public function getLatestCryptoVersionNumber();
+    public function getLatestCryptoVersionId();
 
     /**
      * Returns a crypto adapter for the latest crypto
