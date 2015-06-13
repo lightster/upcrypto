@@ -4,6 +4,7 @@ namespace Lstr\Upcrypto\CryptoAdapter;
 
 use Exception;
 use Zend\Crypt\BlockCipher;
+use Zend\Crypt\Symmetric\Mcrypt;
 
 class ZendCryptAdapter implements CryptoAdapterInterface
 {
@@ -59,7 +60,10 @@ class ZendCryptAdapter implements CryptoAdapterInterface
             return $this->block_cipher;
         }
 
-        $this->block_cipher = BlockCipher::factory('mcrypt');
+        $this->block_cipher = BlockCipher::factory(
+            'mcrypt',
+            ['padding' => Mcrypt::DEFAULT_PADDING]
+        );
         $this->block_cipher->setKey($this->crypto_key);
 
         return $this->block_cipher;
