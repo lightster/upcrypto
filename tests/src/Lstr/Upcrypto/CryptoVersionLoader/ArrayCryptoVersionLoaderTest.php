@@ -14,22 +14,22 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
         ];
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $version,
+            'a' => $version,
         ]);
-        $this->assertEquals(0, $version_loader->getLatestCryptoVersionId());
+        $this->assertEquals('a', $version_loader->getLatestCryptoVersionId());
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $version,
-            $version,
+            'a' => $version,
+            'b' => $version,
         ]);
-        $this->assertEquals(1, $version_loader->getLatestCryptoVersionId());
+        $this->assertEquals('b', $version_loader->getLatestCryptoVersionId());
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $version,
-            $version,
-            $version,
+            'a' => $version,
+            'b' => $version,
+            'c' => $version,
         ]);
-        $this->assertEquals(2, $version_loader->getLatestCryptoVersionId());
+        $this->assertEquals('c', $version_loader->getLatestCryptoVersionId());
     }
 
     public function testLatestCryptoIsCorrectlyReturned()
@@ -38,37 +38,37 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
         );
         $adapters = [
-            $mock_builder->getMock(),
-            $mock_builder->getMock(),
-            $mock_builder->getMock(),
+            'a' => $mock_builder->getMock(),
+            'b' => $mock_builder->getMock(),
+            'c' => $mock_builder->getMock(),
         ];
 
         $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
+            'a' => $versions['a'],
         ]);
         $this->assertEquals(
-            get_class($adapters[0]),
+            get_class($adapters['a']),
             get_class($version_loader->getLatestCrypto())
         );
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
-            $versions[1],
+            'a' => $versions['a'],
+            'b' => $versions['b'],
         ]);
         $this->assertEquals(
-            get_class($adapters[1]),
+            get_class($adapters['b']),
             get_class($version_loader->getLatestCrypto())
         );
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
-            $versions[1],
-            $versions[2],
+            'a' => $versions['a'],
+            'b' => $versions['b'],
+            'c' => $versions['c'],
         ]);
         $this->assertEquals(
-            get_class($adapters[2]),
+            get_class($adapters['c']),
             get_class($version_loader->getLatestCrypto())
         );
     }
@@ -79,29 +79,29 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
         );
         $adapters = [
-            $mock_builder->getMock(),
-            $mock_builder->getMock(),
-            $mock_builder->getMock(),
+            'a' => $mock_builder->getMock(),
+            'b' => $mock_builder->getMock(),
+            'c' => $mock_builder->getMock(),
         ];
 
         $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
-            $versions[1],
-            $versions[2],
+            'a' => $versions['a'],
+            'b' => $versions['b'],
+            'c' => $versions['c'],
         ]);
         $this->assertEquals(
-            get_class($adapters[2]),
-            get_class($version_loader->getCryptoForVersion(2))
+            get_class($adapters['c']),
+            get_class($version_loader->getCryptoForVersion('c'))
         );
         $this->assertEquals(
-            get_class($adapters[0]),
-            get_class($version_loader->getCryptoForVersion(0))
+            get_class($adapters['a']),
+            get_class($version_loader->getCryptoForVersion('a'))
         );
         $this->assertEquals(
-            get_class($adapters[1]),
-            get_class($version_loader->getCryptoForVersion(1))
+            get_class($adapters['b']),
+            get_class($version_loader->getCryptoForVersion('b'))
         );
     }
 
@@ -114,15 +114,15 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
         );
         $adapters = [
-            $mock_builder->getMock(),
+            'a' => $mock_builder->getMock(),
         ];
 
         $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
+            $versions['a'],
         ]);
-        $version_loader->getCryptoForVersion(2);
+        $version_loader->getCryptoForVersion('c');
     }
 
     public function testCryptoForVersionIsReused()
@@ -131,17 +131,17 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             '\Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface'
         );
         $adapters = [
-            $mock_builder->getMock(),
+            'a' => $mock_builder->getMock(),
         ];
 
         $versions = $this->getVersionsFromAdapters($adapters);
 
         $version_loader = new ArrayCryptoVersionLoader([
-            $versions[0],
+            'a' => $versions['a'],
         ]);
         $this->assertSame(
-            $version_loader->getCryptoForVersion(0),
-            $version_loader->getCryptoForVersion(0)
+            $version_loader->getCryptoForVersion('a'),
+            $version_loader->getCryptoForVersion('a')
         );
     }
 
@@ -149,8 +149,8 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
     {
         $versions = [];
 
-        foreach ($adapters as $adapter) {
-            $versions[] = [
+        foreach ($adapters as $id => $adapter) {
+            $versions[$id] = [
                 'crypto_adapter' => $adapter,
             ];
         }

@@ -10,18 +10,18 @@ time.
 
 ```php
 $versions = [
-    [
+    '2015.01.31' => [
         'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
         'crypto_key' => 'the original key',
     ],
-    [
+    '2015.05.19' => [
         'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
         'crypto_key' => 'the new and improved key',
     ]
 ];
 
 $original_version_loader = new ArrayCryptoVersionLoader([
-    $versions[0]
+    '2015.01.31' => $versions['2015.01.31']
 ]);
 $original_upcrypto = new Upcrypto($original_version_loader);
 $loaded_value = $original_upcrypto->encrypt('tada');
@@ -29,8 +29,8 @@ $loaded_value = $original_upcrypto->encrypt('tada');
 // and we just read the encrypted value from the database into $loaded_value
 
 $version_loader = new ArrayCryptoVersionLoader([
-    $versions[0],
-    $versions[1],
+    '2015.01.31' => $versions['2015.01.31'],
+    '2015.05.19' => $versions['2015.05.19'],
 ]);
 $upcrypto = new Upcrypto($version_loader);
 
