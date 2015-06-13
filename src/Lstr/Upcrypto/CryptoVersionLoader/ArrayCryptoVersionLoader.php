@@ -18,6 +18,11 @@ class ArrayCryptoVersionLoader extends AbstractCryptoVersionLoader
     private $cryptos;
 
     /**
+     * @var array
+     */
+    private $latest_version_id;
+
+    /**
      * @param array $versions
      */
     public function __construct(array $versions)
@@ -26,43 +31,48 @@ class ArrayCryptoVersionLoader extends AbstractCryptoVersionLoader
     }
 
     /**
-     * Returns the version number of the latest crypto
+     * Returns the version ID of the latest crypto
      * configuration.
      *
-     * @return int
+     * @return string
      */
     public function getLatestCryptoVersionId()
     {
-        return count($this->versions);
+        if (null !== $this->latest_version_id) {
+            return $this->latest_version_id;
+        }
+
+        end($this->versions);
+        $this->latest_version_id = key($this->versions);
+
+        return $this->latest_version_id;
     }
 
     /**
      * Returns a crypto adapter for the given crypto
      * configuration version number.
      *
-     * @param int $version
+     * @param string $version_id
      * @return CryptoAdapterInterface
      */
-    public function getCryptoForVersion($version)
+    public function getCryptoForVersion($version_id)
     {
-        $version_offset = $version - 1;
-
-        if (!isset($this->versions[$version_offset])) {
+        if (!isset($this->versions[$version_id])) {
             throw new Exception(
-                "Unknown crypto version '{$version_offset}'."
+                "Unknown crypto version '{$version_id}'."
             );
         }
 
-        if (isset($this->cryptos[$version_offset])) {
-            return $this->cryptos[$version_offset];
+        if (isset($this->cryptos[$version_id])) {
+            return $this->cryptos[$version_id];
         }
 
-        $version = $this->versions[$version_offset];
+        $version = $this->versions[$version_id];
         $crypto_class = $version['crypto_adapter'];
         $crypto = new $crypto_class($version);
 
-        $this->cryptos[$version_offset] = $crypto;
+        $this->cryptos[$version_id] = $crypto;
 
-        return $this->cryptos[$version_offset];
+        return $this->cryptos[$version_id];
     }
 }

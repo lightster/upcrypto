@@ -11,7 +11,7 @@ interface CryptoVersionLoaderInterface
      * Returns the version number of the latest crypto
      * configuration.
      *
-     * @return int
+     * @return string
      */
     public function getLatestCryptoVersionId();
 
@@ -27,7 +27,7 @@ interface CryptoVersionLoaderInterface
      * Returns a crypto adapter for the given crypto
      * configuration version number.
      *
-     * @param int $version
+     * @param string $version
      * @return CryptoAdapterInterface
      */
     public function getCryptoForVersion($version);

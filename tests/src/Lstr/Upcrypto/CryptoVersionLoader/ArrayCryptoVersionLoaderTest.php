@@ -16,20 +16,20 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
         $version_loader = new ArrayCryptoVersionLoader([
             $version,
         ]);
+        $this->assertEquals(0, $version_loader->getLatestCryptoVersionId());
+
+        $version_loader = new ArrayCryptoVersionLoader([
+            $version,
+            $version,
+        ]);
         $this->assertEquals(1, $version_loader->getLatestCryptoVersionId());
 
         $version_loader = new ArrayCryptoVersionLoader([
             $version,
             $version,
+            $version,
         ]);
         $this->assertEquals(2, $version_loader->getLatestCryptoVersionId());
-
-        $version_loader = new ArrayCryptoVersionLoader([
-            $version,
-            $version,
-            $version,
-        ]);
-        $this->assertEquals(3, $version_loader->getLatestCryptoVersionId());
     }
 
     public function testLatestCryptoIsCorrectlyReturned()
@@ -93,15 +93,15 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
         ]);
         $this->assertEquals(
             get_class($adapters[2]),
-            get_class($version_loader->getCryptoForVersion(3))
+            get_class($version_loader->getCryptoForVersion(2))
         );
         $this->assertEquals(
             get_class($adapters[0]),
-            get_class($version_loader->getCryptoForVersion(1))
+            get_class($version_loader->getCryptoForVersion(0))
         );
         $this->assertEquals(
             get_class($adapters[1]),
-            get_class($version_loader->getCryptoForVersion(2))
+            get_class($version_loader->getCryptoForVersion(1))
         );
     }
 
@@ -140,8 +140,8 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
             $versions[0],
         ]);
         $this->assertSame(
-            $version_loader->getCryptoForVersion(1),
-            $version_loader->getCryptoForVersion(1)
+            $version_loader->getCryptoForVersion(0),
+            $version_loader->getCryptoForVersion(0)
         );
     }
 
