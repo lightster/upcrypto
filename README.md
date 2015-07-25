@@ -1,4 +1,7 @@
+
 # upcrypto
+
+[![Build Status](https://travis-ci.org/lightster/upcrypto.svg?branch=master)](https://travis-ci.org/lightster/upcrypto)
 
 Streamline runtime upgrade of cryptography
 
