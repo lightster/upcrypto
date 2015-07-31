@@ -6,3 +6,5 @@ php:
   - hhvm
 install:
   - composer install
+after_script:
+  - vendor/bin/test-reporter --coverage-report=tests/log/coverage.xml
