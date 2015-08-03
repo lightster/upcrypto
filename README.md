@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/lightster/upcrypto.svg?branch=master)](https://travis-ci.org/lightster/upcrypto)
 [![Test Coverage](https://codeclimate.com/github/lightster/upcrypto/badges/coverage.svg)](https://codeclimate.com/github/lightster/upcrypto/coverage)
 [![Code Climate](https://codeclimate.com/github/lightster/upcrypto/badges/gpa.svg)](https://codeclimate.com/github/lightster/upcrypto)
+[![Dependency Status](https://www.versioneye.com/user/projects/55b325fc643533001c0004b0/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55b325fc643533001c0004b0)
 
 
 Streamline runtime upgrade of cryptography
