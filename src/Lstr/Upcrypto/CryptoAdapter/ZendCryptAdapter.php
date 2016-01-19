@@ -2,7 +2,7 @@
 
 namespace Lstr\Upcrypto\CryptoAdapter;
 
-use Exception;
+use Lstr\Upcrypto\Exception;
 use Zend\Crypt\BlockCipher;
 use Zend\Crypt\Symmetric\Mcrypt;
 

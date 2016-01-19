@@ -2,7 +2,7 @@
 
 namespace Lstr\Upcrypto\CryptoVersionLoader;
 
-use Exception;
+use Lstr\Upcrypto\Exception;
 use Lstr\Upcrypto\CryptoAdapter\CryptoAdapterInterface;
 
 interface CryptoVersionLoaderInterface

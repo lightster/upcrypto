@@ -66,7 +66,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingInvalidEncryptionObjectThrowsAnException()
     {
@@ -82,7 +82,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingEncryptionObjectWithoutACipherVersionThrowsAnException()
     {
@@ -98,7 +98,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingInvalidEncryptionObjectsThrowsAnException()
     {
