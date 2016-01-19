@@ -106,7 +106,7 @@ class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testCryptoForUnknownVersionThrowsAnException()
     {
