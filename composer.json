@@ -7,7 +7,7 @@
         }
     },
     "require": {
-        "php": "~5.4",
+        "php": "^5.4.0 || ^7.0.0",
         "zendframework/zend-crypt": "~2.0"
     },
     "require-dev": {
