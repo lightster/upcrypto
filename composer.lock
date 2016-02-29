@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7207a1b45c51d1f60cee89ae3b4fc232",
+    "hash": "4bd1ac8642cfe7c8f5a7252b8617dfa7",
+    "content-hash": "f04a35a9c498a14a8016dcad3b17b7f8",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -313,7 +314,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeclimate/php-test-reporter/zipball/85b5de950678a25f3e85adb6bc26de7f7f231d18",
+                "url": "https://api.github.com/repos/codeclimate/php-test-reporter/zipball/9ec2098c9e9839840176c46d9cdab3a57c26ca1c",
                 "reference": "85b5de950678a25f3e85adb6bc26de7f7f231d18",
                 "shasum": ""
             },
@@ -1785,7 +1786,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~5.4"
+        "php": "^5.4.0 || ^7.0.0"
     },
     "platform-dev": []
 }
