@@ -4,8 +4,15 @@ namespace Lstr\Upcrypto;
 
 use PHPUnit_Framework_TestCase;
 
+/**
+ * @coversDefaultClass \Lstr\Upcrypto\Upcrypto
+ */
 class UpcryptoTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers ::__construct
+     * @covers ::encrypt
+     */
     public function testEncryptingCallsEncryptOnTheCryptoAdapter()
     {
         $crypto_adapter = $this
@@ -34,6 +41,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         $upcrypto->encrypt('unencrypted_string');
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::decrypt
+     * @covers ::<private>
+     */
     public function testDecryptingCallsDecryptOnTheCryptoAdapter()
     {
         $crypto_adapter = $this
@@ -66,6 +78,9 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::__construct
+     * @covers ::decrypt
+     * @covers ::<private>
      * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingInvalidEncryptionObjectThrowsAnException()
@@ -82,6 +97,9 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::__construct
+     * @covers ::decrypt
+     * @covers ::<private>
      * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingEncryptionObjectWithoutACipherVersionThrowsAnException()
@@ -98,6 +116,9 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::__construct
+     * @covers ::decrypt
+     * @covers ::<private>
      * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testDecryptingInvalidEncryptionObjectsThrowsAnException()
@@ -113,6 +134,12 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         $upcrypto->decrypt(json_encode(['crypto_version' => 5]));
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::encrypt
+     * @covers ::decrypt
+     * @covers ::<private>
+     */
     public function testEncryptingAndDecryptingAStringReturnsOriginalString()
     {
         $crypto_adapter = $this
@@ -150,6 +177,10 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::isUpToDate
+     */
     public function testUpToDateEncryptionCanBeDetected()
     {
         $crypto_adapter = $this
@@ -180,6 +211,10 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::isUpToDate
+     */
     public function testOutOfDateEncryptionCanBeDetected()
     {
         $crypto_adapter = $this
@@ -224,6 +259,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::upgradeEncryption
+     * @covers ::<private>
+     */
     public function testEncryptionCanBeUpgraded()
     {
         $crypto_adapter = $this
@@ -286,6 +326,11 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::upgradeEncryption
+     * @covers ::<private>
+     */
     public function testUpToDateEncryptionLeavesEncryptionObjectUnchanged()
     {
         $crypto_adapter = $this

@@ -4,8 +4,17 @@ namespace Lstr\Upcrypto\CryptoAdapter;
 
 use PHPUnit_Framework_TestCase;
 
+/**
+ * @coversDefaultClass \Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter
+ */
 class ZendCryptAdapterTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers ::__construct
+     * @covers ::encrypt
+     * @covers ::decrypt
+     * @covers ::<private>
+     */
     public function testEncryptingAndDecryptingReturnsTheOriginalString()
     {
         $adapter = new ZendCryptAdapter([
@@ -19,6 +28,12 @@ class ZendCryptAdapterTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers ::__construct
+     * @covers ::encrypt
+     * @covers ::decrypt
+     * @covers ::<private>
+     */
     public function testUsingTheWrongDecryptionKeyThrowsAnException()
     {
         $encryption_adapter = new ZendCryptAdapter([
@@ -37,10 +52,11 @@ class ZendCryptAdapterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::__construct
      * @expectedException \Lstr\Upcrypto\Exception
      */
     public function testFailingToProvideAKeyThrowsAnException()
     {
-        $adapter = new ZendCryptAdapter([]);
+        new ZendCryptAdapter([]);
     }
 }
