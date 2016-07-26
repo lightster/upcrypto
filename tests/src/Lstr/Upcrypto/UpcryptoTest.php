@@ -223,17 +223,17 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             )
             ->getMock();
 
-        $historical_version_loader = $this
+        $old_version_loader = $this
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
             ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
-        $historical_version_loader
+        $old_version_loader
             ->expects($this->any())
             ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(1));
-        $historical_version_loader
+        $old_version_loader
             ->expects($this->once())
             ->method('getCryptoForVersion')
             ->will($this->returnValue($crypto_adapter));
@@ -249,7 +249,7 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(2));
 
-        $historical_upcrypto = new Upcrypto($historical_version_loader);
+        $historical_upcrypto = new Upcrypto($old_version_loader);
         $new_upcrypto = new Upcrypto($new_version_loader);
 
         $this->assertFalse(
@@ -280,17 +280,17 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->expects($this->exactly(2))
             ->method('encrypt');
 
-        $historical_version_loader = $this
+        $old_version_loader = $this
             ->getMockBuilder(
                 '\Lstr\Upcrypto\CryptoVersionLoader\AbstractCryptoVersionLoader'
             )
             ->setMethods(['getLatestCryptoVersionId', 'getCryptoForVersion'])
             ->getMock();
-        $historical_version_loader
+        $old_version_loader
             ->expects($this->any())
             ->method('getLatestCryptoVersionId')
             ->will($this->returnValue(1));
-        $historical_version_loader
+        $old_version_loader
             ->expects($this->any())
             ->method('getCryptoForVersion')
             ->will($this->returnValue($crypto_adapter));
@@ -310,19 +310,19 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
             ->method('getCryptoForVersion')
             ->will($this->returnValue($crypto_adapter));
 
-        $historical_upcrypto = new Upcrypto($historical_version_loader);
+        $historical_upcrypto = new Upcrypto($old_version_loader);
         $new_upcrypto = new Upcrypto($new_version_loader);
 
-        $historically_encrypted = $historical_upcrypto->encrypt('historically encrypted');
+        $old_encryption = $historical_upcrypto->encrypt('historically encrypted');
 
         $this->assertFalse(
-            $new_upcrypto->isUpToDate($historically_encrypted)
+            $new_upcrypto->isUpToDate($old_encryption)
         );
-        $encrypted_with_upgrade = $new_upcrypto->upgradeEncryption(
-            $historically_encrypted
+        $new_encryption = $new_upcrypto->upgradeEncryption(
+            $old_encryption
         );
         $this->assertTrue(
-            $new_upcrypto->isUpToDate($encrypted_with_upgrade)
+            $new_upcrypto->isUpToDate($new_encryption)
         );
     }
 
@@ -356,20 +356,20 @@ class UpcryptoTest extends PHPUnit_Framework_TestCase
 
         $upcrypto = new Upcrypto($version_loader);
 
-        $historically_encrypted = $upcrypto->encrypt('historically encrypted');
+        $old_encryption = $upcrypto->encrypt('historically encrypted');
 
         $this->assertTrue(
-            $upcrypto->isUpToDate($historically_encrypted)
+            $upcrypto->isUpToDate($old_encryption)
         );
-        $encrypted_with_upgrade = $upcrypto->upgradeEncryption(
-            $historically_encrypted
+        $new_encryption = $upcrypto->upgradeEncryption(
+            $old_encryption
         );
         $this->assertTrue(
-            $upcrypto->isUpToDate($encrypted_with_upgrade)
+            $upcrypto->isUpToDate($new_encryption)
         );
         $this->assertEquals(
-            $historically_encrypted,
-            $encrypted_with_upgrade
+            $old_encryption,
+            $new_encryption
         );
     }
 }

@@ -20,10 +20,10 @@ class ExampleTest extends PHPUnit_Framework_TestCase
             ]
         ];
 
-        $original_version_loader = new ArrayCryptoVersionLoader([
+        $old_version_loader = new ArrayCryptoVersionLoader([
             '2015.01.31' => $versions['2015.01.31']
         ]);
-        $original_upcrypto = new Upcrypto($original_version_loader);
+        $original_upcrypto = new Upcrypto($old_version_loader);
         $loaded_value = $original_upcrypto->encrypt('tada');
         // pretend the encrypted $loaded_value is actually stored in a database
         // and we just read the encrypted value from the database into $loaded_value
@@ -44,19 +44,19 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         // method of encryption
         if (!$upcrypto->isUpToDate($loaded_value)) {
             // if it is not, we can upgrade it to the latest methodology
-            $upgraded_encrypted_value = $upcrypto->upgradeEncryption($loaded_value);
+            $new_encryption = $upcrypto->upgradeEncryption($loaded_value);
             // now you can save the data back to the database
 
             // the upgraded version still decrypts to the propery value
             $this->assertEquals(
                 'tada',
-                $upcrypto->decrypt($upgraded_encrypted_value)
+                $upcrypto->decrypt($new_encryption)
             );
             // and the original encryption cipher is not the same as the
             // new encrpytion cipher
             $this->assertNotEquals(
                 $loaded_value,
-                $upgraded_encrypted_value
+                $new_encryption
             );
         } else {
             $this->assertFalse(true);
