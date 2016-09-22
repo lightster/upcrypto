@@ -1,6 +1,7 @@
 {
     "name": "lightster/upcrypto",
     "description": "Streamline runtime upgrade of cryptography",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Lstr\\Upcrypto\\": "src/Lstr/Upcrypto/"
