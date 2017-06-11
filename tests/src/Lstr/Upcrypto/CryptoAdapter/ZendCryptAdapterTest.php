@@ -9,6 +9,16 @@ use PHPUnit_Framework_TestCase;
  */
 class ZendCryptAdapterTest extends AbstractAdapterTest
 {
+    public function setUp()
+    {
+        if (version_compare(PHP_VERSION, '7.1') >= 0) {
+            $this->markTestSkipped(
+                'mcrypt (and therefore the Zend\Crypt adapter) is only'
+                    . ' supported below PHP 7.1'
+            );
+        }
+    }
+
     /**
      * @covers ::__construct
      * @covers ::encrypt
