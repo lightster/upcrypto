@@ -8,11 +8,14 @@
         }
     },
     "require": {
-        "php": "^5.4.0 || ^7.0.0",
-        "zendframework/zend-crypt": "~2.0"
+        "php": "^5.4.0 || ^7.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.5",
-        "codeclimate/php-test-reporter": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "zendframework/zend-crypt": "~2.0"
+    },
+    "suggest": {
+      "zendframework/zend-crypt:~2.0": "Include Zend\\Crypt 2.x if using the ZendCrypt adapter"
     }
 }
