@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 /**
  * @coversDefaultClass \Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter
  */
-class ZendCryptAdapterTest extends PHPUnit_Framework_TestCase
+class ZendCryptAdapterTest extends AbstractAdapterTest
 {
     /**
      * @covers ::__construct
@@ -58,5 +58,25 @@ class ZendCryptAdapterTest extends PHPUnit_Framework_TestCase
     public function testFailingToProvideAKeyThrowsAnException()
     {
         new ZendCryptAdapter([]);
+    }
+
+    /**
+     * @return ZendCryptAdapter
+     */
+    protected function getGoodCryptoAdapter()
+    {
+        return new ZendCryptAdapter([
+            'crypto_key' => 'the correct password!',
+        ]);
+    }
+
+    /**
+     * @return ZendCryptAdapter
+     */
+    protected function getBadCryptoAdapter()
+    {
+        return new ZendCryptAdapter([
+            'crypto_key' => 'the incorrect password!',
+        ]);
     }
 }
