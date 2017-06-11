@@ -7,21 +7,23 @@ use PHPUnit_Framework_TestCase;
 
 class ExampleTest extends PHPUnit_Framework_TestCase
 {
-    public function testZendCryptHasAnExample()
+    public function testExampleRuns()
     {
         $versions = [
-            '2015.01.31' => [
-                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
-                'crypto_key' => 'the original key',
+            '2017.01.31' => [
+                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\DefuseAdapter',
+                'crypto_key' => 'def000007abb9fab43861eb5a2579460cfcbec7774ecb84bf7ddd3379ebdcf52b6c2'
+                    . '2955049147eac6aa93ebfa6d2452650b222b1def408fe9c58ea527544a41602fe44f',
             ],
-            '2015.05.19' => [
-                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter',
-                'crypto_key' => 'the new and improved key',
-            ]
+            '2017.05.19' => [
+                'crypto_adapter' => '\Lstr\Upcrypto\CryptoAdapter\DefuseAdapter',
+                'crypto_key' => 'def00000d988a0280b5580151c2f207934b6abcd5e59e2cab81c11214f6e2e84c1a8'
+                    . '1627fb3e9634ae1c36d3958ca2491fb95a1337a897338030e77662b38a7cf7fc9dcd',
+            ],
         ];
 
         $old_version_loader = new ArrayCryptoVersionLoader([
-            '2015.01.31' => $versions['2015.01.31']
+            '2017.01.31' => $versions['2017.01.31']
         ]);
         $original_upcrypto = new Upcrypto($old_version_loader);
         $loaded_value = $original_upcrypto->encrypt('tada');
@@ -29,8 +31,8 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         // and we just read the encrypted value from the database into $loaded_value
 
         $version_loader = new ArrayCryptoVersionLoader([
-            '2015.01.31' => $versions['2015.01.31'],
-            '2015.05.19' => $versions['2015.05.19'],
+            '2017.01.31' => $versions['2017.01.31'],
+            '2017.05.19' => $versions['2017.05.19'],
         ]);
         $upcrypto = new Upcrypto($version_loader);
 
