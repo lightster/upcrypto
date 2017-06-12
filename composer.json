@@ -17,6 +17,7 @@
         "defuse/php-encryption": "^2.1.0"
     },
     "suggest": {
-      "zendframework/zend-crypt:~2.0": "Include Zend\\Crypt 2.x if using the ZendCrypt adapter"
+      "zendframework/zend-crypt:~2.0": "Include Zend\\Crypt 2.x if using the ZendCrypt adapter",
+      "defuse/php-encryption:^2.1.0": "Include Defuse if using the Defuse adapter"
     }
 }
