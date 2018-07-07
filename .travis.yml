@@ -1,10 +1,17 @@
 language: php
 php:
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
+- 5.5
+- 5.6
+- 7.0
+- 7.1
+branches:
+  only:
+  - master
+  - "/^v\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
 install:
-  - composer install
+- composer install
 after_script:
-  - vendor/bin/test-reporter --coverage-report=tests/log/coverage.xml
+- vendor/bin/test-reporter --coverage-report=tests/log/coverage.xml
+notifications:
+  slack:
+    secure: IunzSbP0M28bGVzT5JXni+dL+JGhKELnJQ69FYy3YxyIMxygPYRZ3O2fLPOyH1Fy2+E8BjxBQBZZJ6z420ae/sOf8igvEnrZBKw5Du7EAHk+7iPxy2AjowcwtFV1XXcQK+DFeR5qMjWYEtIjc9layxSld5lwayIYulNIUB8dSkkROe4X4wRtGA+R/Nnq94vt42719E84UObYvHkSt6P7BuoDPn4JB93Q/tmRqUwFqlAonCZS//Q5tcg3t/A3IG443f4MZuXHQjqwZ7UuEbR7DcPZIhJV72cAh6EFAnu90u1mwaT8hJrED0mXUSMDT1O43RTRHqzEZ8dOLoEj+gAREbuBnDatnSjSZv2VqwrJfdo8w6QVqj3kHj+ds6ZttMd9Qwz3Y2J0etS3kbR2Aas2Ft8U3h/MLSh+mGhcMnp/pD206N/J/J8/gPCrN+7zo/f5fOdy2Jl2QBtfNkOq3+Mjg0LvwviZDP9hT4mj0h+fWTef00RDm6YgRc8pKCJ+IvODtvLwi4yVQZUttnEKDYYoUIHzkPEfrpi/7VYIESckNA5Xk9jDuRWabL1oftjpsfh+tTKt2hBXY2CjCG9pwnhATuLUo5bEFGuIVlbVHPIsws/pQUdjEDcrCv3A4gYMbuntbWmErhcoUE+7Mvd6QmcPctBBYHQMStX6z1Aslg01dVM=
