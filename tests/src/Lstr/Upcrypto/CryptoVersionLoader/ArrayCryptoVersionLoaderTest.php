@@ -3,12 +3,12 @@
 namespace Lstr\Upcrypto\CryptoVersionLoader;
 
 use Lstr\Upcrypto\CryptoVersionLoader\ArrayCryptoVersionLoader;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Lstr\Upcrypto\CryptoVersionLoader\ArrayCryptoVersionLoader
  */
-class ArrayCryptoVersionLoaderTest extends PHPUnit_Framework_TestCase
+class ArrayCryptoVersionLoaderTest extends TestCase
 {
     /**
      * @covers ::__construct

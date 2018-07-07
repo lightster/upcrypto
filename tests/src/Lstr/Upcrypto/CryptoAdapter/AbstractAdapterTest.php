@@ -2,9 +2,9 @@
 
 namespace Lstr\Upcrypto\CryptoAdapter;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractAdapterTest extends PHPUnit_Framework_TestCase
+abstract class AbstractAdapterTest extends TestCase
 {
     /**
      * @covers ::__construct

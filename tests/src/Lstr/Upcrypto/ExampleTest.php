@@ -3,9 +3,9 @@
 namespace Lstr\Upcrypto;
 
 use Lstr\Upcrypto\CryptoVersionLoader\ArrayCryptoVersionLoader;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends PHPUnit_Framework_TestCase
+class ExampleTest extends TestCase
 {
     public function testExampleRuns()
     {
