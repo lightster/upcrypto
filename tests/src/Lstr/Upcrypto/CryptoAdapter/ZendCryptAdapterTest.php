@@ -2,7 +2,7 @@
 
 namespace Lstr\Upcrypto\CryptoAdapter;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Lstr\Upcrypto\CryptoAdapter\ZendCryptAdapter

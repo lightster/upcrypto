@@ -2,12 +2,12 @@
 
 namespace Lstr\Upcrypto;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Lstr\Upcrypto\Upcrypto
  */
-class UpcryptoTest extends PHPUnit_Framework_TestCase
+class UpcryptoTest extends TestCase
 {
     /**
      * @covers ::__construct
